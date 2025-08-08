@@ -1,4 +1,4 @@
-@extends('partials.dashboard')
+@extends('dashboard')
 @section('content')
     <h2>Add New Institution</h2>
     <form action="{{ route('institutions.store') }}" method="POST">

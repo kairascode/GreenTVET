@@ -20,6 +20,11 @@ class TreePlantingController extends Controller
         $species = TreeSpecies::all();
         return view('plantings.create', compact('institutions', 'species'));
     }
+     public function show(TreePlanting $planting)
+    {
+        $planting->load(['institution', 'treeSpecies']);
+        return view('plantings.show', compact('planting'));
+    }
 
     public function store(Request $request)
     {
@@ -29,6 +34,8 @@ class TreePlantingController extends Controller
             'quantity_planted' => 'required|integer|min:1',
             'planting_date' => 'required|date',
             'pictorial_evidence' => 'nullable|image|max:2048',
+             'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
         ]);
 
         $data = $request->all();
@@ -48,5 +55,14 @@ class TreePlantingController extends Controller
 
         $planting->update(['growth_stage' => $request->growth_stage]);
         return redirect()->back()->with('success', 'Growth stage updated.');
+    }
+
+    public function map()
+    {
+        $plantings = TreePlanting::with(['institution', 'treeSpecies'])
+            ->whereNotNull('latitude')
+            ->whereNotNull('longitude')
+            ->get();
+        return view('plantings.map', compact('plantings'));
     }
 }

@@ -1,4 +1,4 @@
-@extends('partials.dashboard')
+@extends('dashboard')
 @section('content')
     <h2>TVET Institutions</h2>
     <a href="{{ route('institutions.create') }}" class="btn btn-primary mb-3">Add New Institution</a>

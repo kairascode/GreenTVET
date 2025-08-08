@@ -1,4 +1,4 @@
-@extends('partials.dashboard')
+@extends('dashboard')
 @section('content')
     <h2>Tree Plantings</h2>
     <a href="{{ route('plantings.create') }}" class="btn btn-primary">Add Planting</a>

@@ -8,7 +8,8 @@ use App\Events\GrowthStageUpdated;
 
 class TreePlanting extends Model
 {
-     protected $fillable = ['institution_id', 'tree_species_id', 'quantity_planted', 'planting_date', 'growth_stage', 'pictorial_evidence'];
+     protected $fillable = ['institution_id', 'tree_species_id', 'quantity_planted', 'planting_date', 'growth_stage', 'pictorial_evidence','latitude',
+        'longitude'];
 
     protected $dispatchesEvents = [
         'created' => TreePlanted::class,
